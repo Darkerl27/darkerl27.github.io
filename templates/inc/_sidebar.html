@@ -1,0 +1,11 @@
+{%load tags%}
+
+
+{%category_list as category%}
+{%for item in category%}
+<div class="list-group">
+
+  <a href="{{item.get_absolute_url}}" class="list-group-item list-group-item-action">{{item.title}}</a>
+
+</div>
+{%endfor%}

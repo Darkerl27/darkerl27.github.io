@@ -1,0 +1,72 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block mypost%}
+
+
+
+   <h2 align="center">My Post</h2>
+    <select class="form-control " multiple>
+          {%for item in object_list%}
+        <option onclick="">Title : {{item.title}} </option>
+  {%endfor%}
+<!--           {{item.likes.username}}-->
+    </select>
+
+
+{%endblock%}
+
+
+{%block profile%}
+<h1 align="center">User Profile</h1>
+<br/>
+
+<div class="card" style="max-width:540px;">
+
+    <div class="row no-gutters">
+        <div class="col-md-4">
+             {% if user.photo %}
+                  <img src="{{user.photo.url}}" style="padding:5px 5px;" class="rounded-top" width="120">
+        {% else %}
+              <img src="{%static 'images/default/user.png'%}" style="padding:5px 5px;" class="rounded-top" width="120">
+        {% endif %}
+
+        </div>
+        <div class="col-md-8">
+        <div class="card-body">
+             <strong>Username:</strong> {{user.username}}
+            <br/>
+            <strong>Name:</strong> {{user.name}}
+            <br/>
+            <strong>Surname:</strong> {{user.surname}}
+            <br/>
+
+            <strong>Age:</strong> {{user.age}}
+              <br/>
+            <strong>Bio:</strong> {{user.bio}}
+
+        </div>
+    </div>
+
+
+    </div>
+
+</div>
+<div class="text-right">
+
+    <a href="{%url 'edituser' user.id%}">Edit</a> | <a href="{%url 'userdelete' user.id%}">Delete account</a>
+</div>
+
+
+
+{%endblock%}
+
+{%block follow%}
+
+   <h2 align="center">Follow</h2>
+    <select class="form-control " multiple>
+          {%for item in object_list%}
+        <option onclick=""> </option>
+  {%endfor%}
+
+    </select>
+{%endblock%}

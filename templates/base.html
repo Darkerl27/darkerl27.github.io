@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    {%include 'inc/_navbar.html'%}
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mt-5">
+        {%block sidebar%} {%endblock%}
+      </div>
+      <div class="col-md-8  mt-5 ">
+            {%block content%} {%endblock%}
+         {%if page_obj.has_other_pages%}
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              {%if page_obj.has_previous%}
+               <li class="page-item"><a class="page-link" tabindex="-1" href="?{{s}}page=1">First page</a></li>
+              <li class="page-item"><a class="page-link" tabindex="-1" href="?{{s}}page={{page_obj.previous_page_number}}">
+Previous</a></li>
+
+              {%endif%}
+              {%for page in page_obj.paginator.page_range%}
+             {%if page_obj.number == page%}
+              <li class="page-item active"><a class="page-link" href="?{{s}}page{{page}}">{{page}}<span class="sr-only">(current)</span></a></li>
+              {%elif page > page_obj.number|add:-3 and  page < page_obj.number|add:3%}
+                    <li class="page-item"><a class="page-link" href="?{{s}}page={{page}}">{{page}}</a></li>
+              {%endif%}
+              {%endfor%}
+           {%if page_obj.has_next%}
+              <li class="page-item"><a class="page-link" tabindex="-1" href="?{{s}}page={{page_obj.next_page_number}}">Next</a></li>
+               <li class="page-item"><a class="page-link" tabindex="-1" href="?page={{page_obj.paginator.num_pages}}">Last page</a></li>
+           {%endif%}
+            </ul>
+          </nav>
+          {%endif%}
+            </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="container mt-5" style="width:500px">
+
+        {%block register%} {%endblock%}
+
+    </div>
+
+    <div class="container">
+      <div class="row ">
+        <div class="col-md-4 mt-3">
+           {%block mypost%} {%endblock%}
+        </div>
+           <div class="col-md-4">
+           {%block profile%} {%endblock%}
+        </div>
+           <div class="col-md-3 mt-3">
+           {%block follow%} {%endblock%}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  </body>
+</html>
